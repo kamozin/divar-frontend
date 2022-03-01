@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--begin::Toolbar-->
-    <toolbar page="Create Sender" page-create="/sellers"></toolbar>
+    <toolbar page="Create Seller" page-create="/sellers"></toolbar>
     <!--end::Toolbar-->
     <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
       <!--begin::Post-->
@@ -60,7 +60,7 @@ import AllertSuccess from "~/components/allertSuccess";
 import {ValidationProvider} from "vee-validate";
 
 export default {
-  name: 'PackageCreate',
+  name: 'SellerCreate',
   components: {AllertSuccess, ValidationProvider},
   data() {
     return {

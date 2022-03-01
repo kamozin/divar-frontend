@@ -42,7 +42,7 @@ import AllertSuccess from "~/components/allertSuccess";
 import {ValidationProvider} from "vee-validate";
 
 export default {
-  name: 'PackageCreate',
+  name: 'SenderCreate',
   components: {AllertSuccess, ValidationProvider},
   data() {
     return {

@@ -48,8 +48,15 @@
 										</nuxt-link>
 
     </div>
+    <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item   me-lg-1">
+										<nuxt-link to="/delivery-terms" class="menu-link py-3">
+                      <span class="menu-title">Delivery Terms</span>
+											<span class="menu-arrow d-lg-none"></span>
+										</nuxt-link>
+
+    </div>
     <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item  me-lg-1">
-										<nuxt-link to="/contarcts" class="menu-link py-3">
+										<nuxt-link to="/contracts" class="menu-link py-3">
                       <span class="menu-title">Contracts</span>
 											<span class="menu-arrow d-lg-none"></span>
 										</nuxt-link>

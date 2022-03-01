@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--begin::Toolbar-->
-    <toolbar page="Buyers" page-create="/buyers"></toolbar>
+    <toolbar page="Delivery Terms" page-create="/delivery-terms"></toolbar>
     <!--end::Toolbar-->
     <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
       <!--begin::Post-->
@@ -14,18 +14,16 @@
               <thead>
               <tr class="fw-bolder fs-6 text-gray-800">
                 <th>Name</th>
-                <th>INN</th>
-                <th>KPP</th>
+                <th>Name En</th>
                 <th>Actions</th>
               </tr>
               </thead>
               <tbody>
                 <tr v-for="(item, index) in list">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.inn }}</td>
-                  <td>{{ item.kpp }}</td>
+                  <td>{{ item.title }}</td>
+                  <td>{{ item.title_en }}</td>
                   <td>
-                    <Nuxt-link class="btn btn-primary" :to="'buyers/'+item.id">Edit</Nuxt-link>
+                    <Nuxt-link class="btn btn-primary" :to="'delivery-terms/'+item.id">Edit</Nuxt-link>
                   </td>
                 </tr>
               </tbody>
@@ -41,7 +39,7 @@
 
 <script>
 export default {
-  name: 'BuyerList',
+  name: 'deliveryTermsList',
 
   data() {
     return {
@@ -51,17 +49,18 @@ export default {
   mounted() {
     this.getData();
   },
-  methods: {
-    getData() {
-      this.$axios.$get('/buyer', this.form)
-        .then(response => {
-          console.log(response.data)
-          this.list = response.data;
-        })
-        .catch(error => {
 
-        })
-    }
+  methods: {
+      getData() {
+        this.$axios.$get('/delivery-terms', this.form)
+          .then(response => {
+            this.list = response.data;
+          })
+          .catch(error => {
+
+          })
+      }
+
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--begin::Toolbar-->
-    <toolbar page="Buyers" page-create="/buyers"></toolbar>
+    <toolbar page="Contracts" page-create="/contracts"></toolbar>
     <!--end::Toolbar-->
     <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
       <!--begin::Post-->
@@ -13,19 +13,17 @@
             <table class="table table-row-dashed table-row-gray-300 gy-7">
               <thead>
               <tr class="fw-bolder fs-6 text-gray-800">
-                <th>Name</th>
-                <th>INN</th>
-                <th>KPP</th>
+                <th>Contract Number</th>
+                <th>Date Contract</th>
                 <th>Actions</th>
               </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in list">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.inn }}</td>
-                  <td>{{ item.kpp }}</td>
+                <tr v-for="(item, index) in contracts">
+                  <td>{{ item.number_contract }}</td>
+                  <td>{{ item.dt_contract }}</td>
                   <td>
-                    <Nuxt-link class="btn btn-primary" :to="'buyers/'+item.id">Edit</Nuxt-link>
+                    <Nuxt-link class="btn btn-primary" :to="'contracts/'+item.id">Edit</Nuxt-link>
                   </td>
                 </tr>
               </tbody>
@@ -40,23 +38,25 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
-  name: 'BuyerList',
+  name: 'ContractList',
 
   data() {
     return {
-      list: []
+      contracts: []
     }
   },
   mounted() {
-    this.getData();
+    this.getContracts();
   },
+
   methods: {
-    getData() {
-      this.$axios.$get('/buyer', this.form)
+    getContracts () {
+      this.$axios.$get('/contracts', this.form)
         .then(response => {
           console.log(response.data)
-          this.list = response.data;
+          this.contracts = response.data;
         })
         .catch(error => {
 

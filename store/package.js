@@ -1,23 +1,36 @@
 export const state = () => ({
   listPackage: [],
+  formPackage:{},
   successCreate: false
 })
 
 export const mutations = {
-  add(state, text) {
-
-  },
-
-  toggleAllert(state, value) {
-    todo.done = !todo.done
+  SAVE_PACKAGE(state, data) {
+    state.listPackage=data;
   }
 }
 
-export const getters = {}
+export const getters = {
+  getPackage: (state) => (id) => {
+    return state.listPackage.find(item => item.id === id)
+  }
+}
 
 
 export const actions = {
-  save (state, params) {
+  getPackages ({ commit }) {
+    this.$axios.$get('/package')
+      .then(response => {
+        commit('SAVE_PACKAGE', response.data)
+      })
+      .catch(error => {
+
+      })
+  },
+
+
+
+  savePackage (state, params) {
     this.$axios.$post('/package', params)
       .then(response => {
         if (response.result == true) {

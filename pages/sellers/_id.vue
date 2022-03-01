@@ -60,7 +60,7 @@ import AllertSuccess from "~/components/allertSuccess";
 import {ValidationProvider} from "vee-validate";
 
 export default {
-  name: 'SenderUpdate',
+  name: 'SellerUpdate',
   components: {AllertSuccess, ValidationProvider},
   data() {
     return {

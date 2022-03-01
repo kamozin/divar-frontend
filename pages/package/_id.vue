@@ -58,6 +58,7 @@ export default {
     this.getData();
   },
 
+
   methods: {
     getData() {
 

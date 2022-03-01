@@ -19,7 +19,7 @@
               </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in list">
+                <tr v-for="(item, index) in packages">
                   <td>{{ item.title }}</td>
                   <td>{{ item.title_en }}</td>
                   <td>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: 'PackageList',
 
@@ -47,19 +48,17 @@ export default {
     }
   },
   mounted() {
-    this.getPackage();
+    this.getPackages();
+  },
+  computed:{
+    packages () {
+      return this.$store.state.package.listPackage
+    }
   },
   methods: {
-    getPackage() {
-      this.$axios.$get('/package', this.form)
-        .then(response => {
-          console.log(response.data)
-          this.list = response.data;
-        })
-        .catch(error => {
-
-        })
-    }
+    ...mapActions({
+      getPackages: 'package/getPackages',
+    })
   }
 }
 </script>
