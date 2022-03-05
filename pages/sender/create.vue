@@ -57,7 +57,7 @@ export default {
   methods: {
     saveData() {
       this.successCreate = false;
-      this.$axios.$post('/package', this.form)
+      this.$axios.$post('/sender', this.form)
         .then(response => {
           console.log(response)
           if (response.result == true) {

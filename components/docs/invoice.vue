@@ -51,6 +51,77 @@
         </tr>
       </table>
       <p>{{doc.deliveryTerms}}</p>
+
+      <h2>SENDER:</h2>
+      <table v-if="sender">
+
+        <tr>
+          <td>
+            {{sender.name}}
+          </td>
+        </tr>
+        <tr>
+          <td v-if="seller">
+            BY ORDER: {{seller.name}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Address: {{sender.address}}
+          </td>
+        </tr>
+
+      </table>
+
+      <h2>BUYER:</h2>
+      <table v-if="buyer">
+
+        <tr>
+          <td>
+            {{buyer.name}}
+          </td>
+        </tr>
+        <tr>
+          <td v-if="seller">
+            INN: {{buyer.inn}} KPP: {{buyer.kpp}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Address: {{buyer.address}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            OGRN: {{buyer.address}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Bank Details: {{buyer.address}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Address: {{buyer.bank_address}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Bank Account: {{buyer.bank_account}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Corr.Account: {{buyer.corr_account}}
+          </td>
+        </tr>
+
+      </table>
+
+
+
+
     </div>
   </div>
 </template>
@@ -62,6 +133,7 @@ export default {
     'seller',
     'doc',
     'buyer',
+    'sender'
   ],
 }
 </script>

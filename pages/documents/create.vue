@@ -70,6 +70,15 @@
               </div>
 
               <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-5">
+                    <label>Sender</label>
+                    <select @change="setSender($event)" v-model="form.sender_id"
+                            class="form-control form-control-solid">
+                      <option v-for="(item, index) in senders" :value="index">{{ item.name }}</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="col-md-3">
                   <div class="form-group mb-5">
                     <label>Product</label>
@@ -155,7 +164,7 @@
             </form>
           </div>
           <div class="py-5">
-            <invoice :doc="form" :buyer="contract.buyer"  :seller="contract.seller"></invoice>
+            <invoice :sender="sender" :doc="form" :buyer="contract.buyer" :seller="contract.seller"></invoice>
           </div>
         </div>
         <!--end::Row-->
@@ -169,6 +178,7 @@
 import AllertSuccess from "~/components/allertSuccess";
 import {ValidationProvider} from "vee-validate";
 import invoice from "~/components/docs/invoice"
+
 export default {
   name: 'DocumentCreate',
   components: {AllertSuccess, ValidationProvider, invoice},
@@ -185,9 +195,10 @@ export default {
       products: [],
       package: [],
       contracts: [],
-      contract:{},
+      contract: {},
       successCreate: false,
-      sender: [],
+      senders: [],
+      sender: null,
       docsProducts: [],
       selectedProduct: 0,
       deliveryTerms: []
@@ -199,9 +210,28 @@ export default {
     this.getProducts()
     this.getPackage()
     this.getDeliveryTerms()
+    this.getSenders()
   },
 
   methods: {
+    setSender($evt) {
+      this.sender=this.senders[$evt.target.value]
+
+    },
+
+    getSenders() {
+      this.$axios.get('/sender')
+        .then(response => {
+
+          if (response.data.result == true) {
+            this.senders = response.data.data
+          }
+        })
+        .catch(error => {
+
+        })
+    },
+
     addProductDoc() {
       if (this.selectedProduct === 0) {
         alert('Select product')
